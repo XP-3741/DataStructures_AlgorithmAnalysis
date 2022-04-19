@@ -5,6 +5,8 @@ void printMatchedPairs(string);	// 括号匹配
 void towersOfHanoi(int, string, string, string);	// 汉诺塔_递归方法
 void towersOfHanoi(int n);		// 函数 moveAndShow 的预处理程序
 void moveAndShow(int, int, int, int);	// 汉诺塔_用栈求解
+bool railroad(int[], int, int);		// 列车车厢重排
+bool checkBox(int[], int);		// 开关盒布线
 
 int main()
 {
@@ -14,6 +16,14 @@ int main()
 	towersOfHanoi(5, "1", "2", "3");
 
 	towersOfHanoi(5);
+
+	int inputOrder[10] = { -1,5,7,2,1,9,6,3,8,4 };
+	if (railroad(inputOrder, 9, 5))
+		cout << "Railroad success\n";
+
+	int net[8] = { 1,2,2,1,3,3,4,4 };
+	checkBox(net, 8);
+
 	return 0;
 }
 
@@ -191,3 +201,35 @@ bool putInHoldingTrack(int c)
 
 	return true;
 }
+
+/*-------------------------------------开关盒布线-------------------------------------*/
+bool checkBox(int net[], int n)		/* n */
+{// 确定开关盒是否可布线
+ // 数组 net[0..n-1] 管脚数组,用以形成网组
+ // n 是管脚个数
+
+	arrayStack<int>* s = new arrayStack<int>(n);
+
+	// 按顺时针扫描网组
+	for (int i = 0; i < n; i++)
+		// 处理管脚 i
+		if (!s->empty())
+			// 检查栈的顶部管脚
+			if (net[i] == net[s->top()])
+				// 管脚 net[i] 是可布线的,从栈中删除
+				s->pop();
+			else  s->push(i);
+		else  s->push(i);
+
+	// 是否有剩余的不可布线的管脚
+	if (s->empty())
+	{// 没有剩余的管脚
+		cout << "Switch box is routable" << endl;
+		return true;
+	}
+
+	cout << "Switch box is not routable" << endl;
+	return false;
+}
+
+/*-----------------------------------离线等价类问题-----------------------------------*/
