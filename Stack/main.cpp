@@ -233,3 +233,79 @@ bool checkBox(int net[], int n)		/* n */
 }
 
 /*-----------------------------------离线等价类问题-----------------------------------*/
+
+
+/*--------------------------------------迷宫老鼠--------------------------------------*/
+struct position
+{
+	int row;
+	int col;
+};
+
+const int size = 10;
+int maze[size + 2][size + 2];
+
+bool findPath()
+{// 寻找一条从入口(1,1)到达出口(size,size)的路径
+ // 如果找到,返回true,否则返回false
+
+	arrayStack<position>* path = new arrayStack<position>;
+
+	// 初始化偏移量
+	position offset[4];
+	offset[0].row = 0;	offset[0].col = 1;		// 右
+	offset[1].row = 1;	offset[1].col = 1;		// 下
+	offset[2].row = 0;	offset[2].col = -1;		// 左
+	offset[3].row = -1;	offset[3].col = 1;		// 上
+
+	// 初始化迷宫外围的障碍墙
+	for (int i = 0; i <= size + 1; i++)
+	{
+		maze[0][i] = maze[size + 1][i] = 1;		// 底部和顶部
+		maze[i][0] = maze[i][size + 1] = 1;		// 左和右
+	}
+
+	position here;
+	here.col = 1;
+	here.row = 1;
+	maze[1][1] = 1;								// 防止回到入口
+	int option = 0;								// 下一步
+	int lastOption = 3;
+
+	// 寻找一条路径
+	while (here.col != size || here.row != size)
+	{// 没有到达出口
+		// 找到要移动的相邻的一步
+		int r, c;
+		while (option <= lastOption)
+		{
+			r = here.row + offset[option].row;
+			c = here.col + offset[option].col;
+			if (maze[r][c] == 0)	break;
+			option++;							// 下一个选择
+		}
+
+		// 相邻的一步是否找到？
+		if (option <= lastOption)
+		{// 移到maze[r][c]
+			path->push(here);
+			here.row = r;
+			here.col = c;
+			maze[r][c] = 1;						// 设置1,以防重复访问
+			option = 0;
+		}
+		else
+		{// 没有临近的一步可走,返回
+			if (path->empty())					// 没有位置可返回
+				return false;
+			position next = path->top();
+			path->pop();
+			if (next.row == here.row)
+				option = 2 + next.col - here.col;
+			else
+				option = 3 + next.row - here.row;
+			here = next;
+		}
+	}
+	return true;								// 到达出口
+}
