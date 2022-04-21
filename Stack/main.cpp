@@ -7,6 +7,7 @@ void towersOfHanoi(int n);		// 函数 moveAndShow 的预处理程序
 void moveAndShow(int, int, int, int);	// 汉诺塔_用栈求解
 bool railroad(int[], int, int);		// 列车车厢重排
 bool checkBox(int[], int);		// 开关盒布线
+bool findPath();	// 迷宫老鼠
 
 int main()
 {
@@ -23,6 +24,9 @@ int main()
 
 	int net[8] = { 1,2,2,1,3,3,4,4 };
 	checkBox(net, 8);
+
+	if (findPath())	cout << "FindPath success\n";
+	else   cout << "FindPath fail\n";
 
 	return 0;
 }
@@ -242,8 +246,17 @@ struct position
 	int col;
 };
 
-const int size = 10;
-int maze[size + 2][size + 2];
+const int size = 5;
+int maze[size + 2][size + 2] =
+{
+	{1,1,1,1,1,1,1},
+	{1,0,1,1,0,0,1},
+	{1,0,0,0,0,1,1},
+	{1,1,0,1,1,1,1},
+	{1,1,0,0,1,1,1},
+	{1,0,0,1,0,0,1},
+	{1,1,1,1,1,1,1}
+};
 
 bool findPath()
 {// 寻找一条从入口(1,1)到达出口(size,size)的路径

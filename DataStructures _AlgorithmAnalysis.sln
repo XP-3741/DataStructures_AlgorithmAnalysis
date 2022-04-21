@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearTable", "LinearTable\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\Stack.vcxproj", "{9C786F65-90C5-454A-9E77-E219B7C8E95A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queue", "Queue\Queue.vcxproj", "{2C230AE6-7427-444D-AA29-F0357E6A0C6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{9C786F65-90C5-454A-9E77-E219B7C8E95A}.Release|x64.Build.0 = Release|x64
 		{9C786F65-90C5-454A-9E77-E219B7C8E95A}.Release|x86.ActiveCfg = Release|Win32
 		{9C786F65-90C5-454A-9E77-E219B7C8E95A}.Release|x86.Build.0 = Release|Win32
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Debug|x64.ActiveCfg = Debug|x64
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Debug|x64.Build.0 = Debug|x64
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Debug|x86.ActiveCfg = Debug|Win32
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Debug|x86.Build.0 = Debug|Win32
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Release|x64.ActiveCfg = Release|x64
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Release|x64.Build.0 = Release|x64
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Release|x86.ActiveCfg = Release|Win32
+		{2C230AE6-7427-444D-AA29-F0357E6A0C6D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
