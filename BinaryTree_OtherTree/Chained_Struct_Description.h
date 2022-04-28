@@ -24,6 +24,8 @@ struct binaryTreeNode
 	}
 };
 
+
+
 // ¶ş²æÊ÷±éÀú
 
 template<class T>
